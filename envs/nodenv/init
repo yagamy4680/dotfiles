@@ -1,0 +1,9 @@
+#!/bin/bash
+
+if [ ! -f "/tmp/nodenv" ]; then
+	cd ~/.nodenv && src/configure && make -C src
+	touch /tmp/nodenv
+fi
+
+export PATH="$HOME/.nodenv/bin:$PATH"
+eval "$(nodenv init -)"

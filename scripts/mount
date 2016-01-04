@@ -1,0 +1,11 @@
+#!/bin/bash
+
+CURRENT=$(pwd)
+cd $(dirname $0)
+cd ..
+DOTFILE_DIR=$(pwd)
+cd ${CURRENT}
+
+for dir in $@; do
+	${DOTFILE_DIR}/${dir}/mount
+done

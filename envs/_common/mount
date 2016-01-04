@@ -1,0 +1,62 @@
+#!/bin/bash
+#
+
+CURRENT=$(pwd)
+cd $(dirname $0)
+NAME=$(basename $(pwd))
+cd ../..
+DOTFILE_DIR=$(pwd)
+cd ~
+HOME_DIR=$(pwd)
+cd ${CURRENT}
+
+# echo "NAME: ${NAME}"
+# echo "DOTFILE_DIR: ${DOTFILE_DIR}"
+# echo "HOME_DIR: ${HOME_DIR}"
+
+OS_KERNEL=$(uname -s | tr "[A-Z]" "[a-z]")
+OS_DIST_NAME=$(lsb_release -a 2>/dev/null | grep "^Distributor" | awk '{print $3}' | tr "[A-Z]" "[a-z]")
+OS_DIST_CODENAME=$(lsb_release -a 2>/dev/null | grep "^Codename" | awk '{print $2}' | tr "[A-Z]" "[a-z]")
+OS_ARCH=$(uname -m | tr "[A-Z]" "[a-z]")
+OS_NAME="${OS_KERNEL}-${OS_DIST_NAME}-${OS_DIST_CODENAME}"
+
+SRC_DIR="${DOTFILE_DIR}/third_parties/${NAME}"
+RUNTIMES_DIR="${DOTFILE_DIR}/envs/${NAME}/versions/${OS_NAME}/${OS_ARCH}"
+TARGET_DIR="${HOME_DIR}/.${NAME}"
+BASH_DIR="${HOME_DIR}/.bash_scripts"
+BASH_INIT="${DOTFILE_DIR}/envs/${NAME}/init"
+
+rm -rf ${TARGET_DIR}
+
+
+# Prepare ~/.bash_scripts/nodenv
+#
+mkdir -p ${BASH_DIR}
+cd ${BASH_DIR} && rm -f ./${NAME} && [ -f "${BASH_INIT}" ] && ln -s ${BASH_INIT} ${NAME}
+
+
+# Prepare ~/.nodenv
+#
+mkdir -p ${TARGET_DIR}
+cd ${TARGET_DIR} && \
+	pwd && \
+	find ${SRC_DIR} -maxdepth 1 -mindepth 1 | xargs -I{} sh -c "ln -s {}"
+
+
+# Prepare ~/.nodenv/versions
+#
+# mkdir -p ${RUNTIMES_DIR}
+# mkdir -p /opt/runtimes/nodenv/versions
+# echo "copying ${RUNTIMES_DIR}/ to /opt/runtimes/nodenv/versions"
+# rsync --quiet -av ${RUNTIMES_DIR}/ /opt/runtimes/nodenv/versions
+# cd ${TARGET_DIR} && ln -s /opt/runtimes/nodenv/versions versions
+
+
+# Prepare ~/.nodenv/plugins
+#
+mkdir -p ${TARGET_DIR}/plugins
+cd ${TARGET_DIR}/plugins && \
+	pwd && \
+	find ${SRC_DIR}_plugins -maxdepth 1 -mindepth 1 | xargs -I{} sh -c "ln -s {}"
+
+

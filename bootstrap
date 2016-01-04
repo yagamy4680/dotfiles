@@ -1,0 +1,16 @@
+#!/bin/bash
+#
+CURRENT=$(pwd)
+cd $(dirname $0)
+DOTFILE_DIR=$(pwd)
+cd ${CURRENT}
+
+set -x
+
+HOOK="source ${DOTFILE_DIR}/.bashrc"
+if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
+	echo ${HOOK} >> ~/.bashrc
+	${DOTFILE_DIR}/scripts/mount envs/nodenv envs/vim
+else
+	echo "already mounted"
+fi

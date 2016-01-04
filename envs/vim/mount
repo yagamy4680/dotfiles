@@ -1,0 +1,17 @@
+#!/bin/bash
+#
+
+CURRENT=$(pwd)
+cd $(dirname $0)
+NAME=$(basename $(pwd))
+cd ../..
+DOTFILE_DIR=$(pwd)
+cd ~
+HOME_DIR=$(pwd)
+cd ${CURRENT}
+
+TARGET_DIR="${HOME_DIR}/.${NAME}"
+SRC_DIR="${DOTFILE_DIR}/.${NAME}"
+
+rm -rf ${TARGET_DIR}
+cd ${HOME_DIR} && ln -s ${SRC_DIR} && ln -s ${DOTFILE_DIR}/.vimrc
