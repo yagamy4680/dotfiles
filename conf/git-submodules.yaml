@@ -51,5 +51,21 @@ vim:
     - "PProvost/vim-ps1"
 
 
+language_envs:
+  nodenv:
+    # nodenv: node.js version management
+    - "OiNutter/nodenv        third_parties"
 
-# - "trusktr/seti.vim"
+    # install command to compile and install different versions of Node on UNIX-like systems.
+    - "OiNutter/node-build    third_parties/nodenv_plugins"
+
+    # An nodenv plugin that safely sets global and per-project environment variables
+    - "OiNutter/nodenv-vars   third_parties/nodenv_plugins"
+
+
+  pyenv:
+    # pyenv: python version management
+    - "yyuu/pyenv             third_parties"
+
+
+

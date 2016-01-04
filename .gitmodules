@@ -40,3 +40,15 @@
 [submodule ".vim/bundle/vim-ps1"]
 	path = .vim/bundle/vim-ps1
 	url = https://github.com/PProvost/vim-ps1.git
+[submodule "third_parties/nodenv"]
+	path = third_parties/nodenv
+	url = https://github.com/OiNutter/nodenv.git
+[submodule "third_parties/nodenv_plugins/node-build"]
+	path = third_parties/nodenv_plugins/node-build
+	url = https://github.com/OiNutter/node-build.git
+[submodule "third_parties/nodenv_plugins/nodenv-vars"]
+	path = third_parties/nodenv_plugins/nodenv-vars
+	url = https://github.com/OiNutter/nodenv-vars.git
+[submodule "third_parties/pyenv"]
+	path = third_parties/pyenv
+	url = https://github.com/yyuu/pyenv.git

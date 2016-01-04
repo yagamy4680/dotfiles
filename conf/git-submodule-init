@@ -1,22 +1,51 @@
 #!/bin/bash
 # 
-function init-sub-module {
+function init-vim-plugins {
 	CONF=$1
-	ROOTDIR=$2
-	NAME=$3
+	NAME="vim"
 
 	TARGET_DIR=$(cat ${CONF} | shyaml get-value ${NAME}.path)
 
 	REPOS=($(cat ${CONF} | shyaml get-values ${NAME}.github_repositories))
 	for repo in ${REPOS[@]} ; do
 		DIRNAME="${TARGET_DIR}/$(basename ${repo})"
-		CMD="git submodule add https://github.com/${repo}.git ${DIRNAME}"
-		echo ${CMD}
-		${CMD}
+		CMD="git submodule add --quiet https://github.com/${repo}.git ${DIRNAME}"
+		if [ -d ${DIRNAME} ]; then
+			echo "ignore vim-plugin $(basename ${DIRNAME})"
+		else
+			echo ${CMD}
+			${CMD}
+		fi
 	done
 }
+
+
+function init-git-submodules {
+	CONF=$1
+	NAME=$2
+
+	cat ${CONF} | shyaml get-values ${NAME} | \
+		while read DIR; do
+			REPO=$(echo ${DIR} | awk '{print $1}')
+			DIR=$(echo ${DIR} | awk '{print $2}')
+			REPO_NAME=$(basename ${REPO})
+			REPO_DIR="${DIR}/${REPO_NAME}"
+			CMD="git submodule add --quiet https://github.com/${REPO}.git ${REPO_DIR}"
+			if [ -d ${REPO_DIR} ]; then
+				echo "ignore ${NAME}[${REPO_DIR}]"
+			else
+				echo ${CMD}
+				${CMD}
+			fi
+		done
+}
+
+
 
 CURRENT=$(pwd)
 CONF=$(dirname $0)/git-submodules.yaml
 
-init-sub-module ${CONF} ${CURRENT} vim
+init-vim-plugins ${CONF}
+init-git-submodules ${CONF} language_envs.nodenv
+init-git-submodules ${CONF} language_envs.pyenv
+
