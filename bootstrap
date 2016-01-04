@@ -5,8 +5,6 @@ cd $(dirname $0)
 DOTFILE_DIR=$(pwd)
 cd ${CURRENT}
 
-set -x
-
 HOOK="source ${DOTFILE_DIR}/.bashrc"
 if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	echo ${HOOK} >> ~/.bashrc
