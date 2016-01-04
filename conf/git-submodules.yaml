@@ -1,0 +1,55 @@
+# All git submodules
+#
+
+vim:
+  path: ".vim/bundle"
+  github_repositories:
+    # Vundle, the plug-in manager for Vim
+    - "VundleVim/Vundle.vim"
+
+    ### ------ Language Syntax plugins -------
+    ##
+    # Rust
+    - "bryanjswift/vim-rust"
+
+    # Go-lang
+    - "fatih/vim-go"
+
+    # Coffee-script
+    - "kchmck/vim-coffee-script"
+
+    # Livescript
+    - "gkz/vim-ls"
+
+    # LESS (dynamic CSS)
+    - "groenewege/vim-less"
+
+    # Handlebars Template Language
+    - "nono/vim-handlebars"
+
+
+    ### ------ Configuration Syntax plugins -------
+    ##
+    # Dockerfile
+    - "ekalinin/Dockerfile.vim"
+
+    # JSON
+    - "elzr/vim-json"
+
+    # TOML
+    - "cespare/vim-toml"
+
+    # VCL - Varnish configuration Language
+    - "empanda/vim-varnish"
+
+    # Puppet
+    - "rodjek/vim-puppet"
+
+    # Markdown
+    - "tpope/vim-markdown"
+
+    - "PProvost/vim-ps1"
+
+
+
+# - "trusktr/seti.vim"

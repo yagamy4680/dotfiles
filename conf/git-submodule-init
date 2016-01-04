@@ -1,0 +1,22 @@
+#!/bin/bash
+# 
+function init-sub-module {
+	CONF=$1
+	ROOTDIR=$2
+	NAME=$3
+
+	TARGET_DIR=$(cat ${CONF} | shyaml get-value ${NAME}.path)
+
+	REPOS=($(cat ${CONF} | shyaml get-values ${NAME}.github_repositories))
+	for repo in ${REPOS[@]} ; do
+		DIRNAME="${TARGET_DIR}/$(basename ${repo})"
+		CMD="git submodule add https://github.com/${repo}.git ${DIRNAME}"
+		echo ${CMD}
+		${CMD}
+	done
+}
+
+CURRENT=$(pwd)
+CONF=$(dirname $0)/git-submodules.yaml
+
+init-sub-module ${CONF} ${CURRENT} vim
