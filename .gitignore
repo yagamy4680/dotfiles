@@ -60,5 +60,5 @@ target/
 # Programming Language Runtimes
 /envs/nodenv/versions
 
-
-
+# A mark file to indicate whether the git submodules are initialized or not
+/.bootstrapped

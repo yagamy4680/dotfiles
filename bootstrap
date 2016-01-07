@@ -5,6 +5,12 @@ cd $(dirname $0)
 DOTFILE_DIR=$(pwd)
 cd ${CURRENT}
 
+if [ ! -f "$(dirname $0)/.bootstrapped" ]; then
+	git submodule init
+	git submodule update
+	touch $(dirname $0)/.bootstrapped
+fi
+
 HOOK="source ${DOTFILE_DIR}/.bashrc"
 if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	echo ${HOOK} >> ~/.bashrc
