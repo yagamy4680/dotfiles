@@ -1,0 +1,7 @@
+#!/bin/bash
+
+# Inspired by http://stackoverflow.com/questions/5828324/update-git-submodule-to-latest-commit-on-origin
+#
+#   update each git-submodule to latest revision.
+#
+git submodule update --remote --merge
