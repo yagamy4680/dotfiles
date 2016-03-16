@@ -26,17 +26,15 @@ function get_current_path {
 # every time, which will make SSH terminal response time longer.
 #
 function node_ver {
-	if [ "true" == "${USE_NODE_VERSION_CACHE}" ]; then
-		local FILE="/tmp/.node.version"
-		if [ "" != "$(which nodenv)" ]; then
-			[ ! -f "${FILE}" ] && nodenv version | awk '{print $1}' > ${FILE}
-			echo "node@$(cat ${FILE}) "
-		fi
-	else
-		[ "" != "$(which nodenv)" ] && echo "node@$(nodenv version | awk '{print $1}') "
-	fi
+	[ "" != "$(which nodenv)" ] && echo "node@$(nodenv version | awk '{print $1}') "
 }
 
 DOTFILE_DIR="$(get_current_path)"
 export PATH="${DOTFILE_DIR}/bin:${PATH}"
-export PS1="\$(node_ver)\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;36m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
+
+if [ "true" == "${USE_NODE_VERSION_CACHE}" ]; then
+	VERSION="node@$(nodenv version  | awk '{print $1}') "
+	export PS1="${VERSION}\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;36m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
+else
+	export PS1="\$(node_ver)\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;36m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
+fi
