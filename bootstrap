@@ -18,7 +18,7 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	DEFAULT_NODEJS_VERSION="4.4.0"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s ${DEFAULT_NODEJS_VERSION} && nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.3.2
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 5.8.0
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 5.7.1
 else
 	echo "already mounted"
 fi
