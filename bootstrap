@@ -15,6 +15,9 @@ HOOK="source ${DOTFILE_DIR}/.bashrc"
 if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	echo ${HOOK} >> ~/.bashrc
 	${DOTFILE_DIR}/scripts/mount envs/nodenv envs/vim
+	DEFAULT_NODEJS_VERSION="4.4.0"
+	nodenv install -s ${DEFAULT_NODEJS_VERSION} && nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
+	nodenv install -s 0.12.7
 else
 	echo "already mounted"
 fi
