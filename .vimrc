@@ -13,22 +13,27 @@ endif
 set rtp+=~/.vim/bundle/Vundle.vim
 call vundle#begin()
 
-""" ------ Language Syntax plugins -------
+Plugin 'gmarik/vundle'
+
+" Language plugins
 Plugin 'bryanjswift/vim-rust'
+Plugin 'wting/rust.vim'
 Plugin 'fatih/vim-go'
 Plugin 'kchmck/vim-coffee-script'
 Plugin 'gkz/vim-ls'
-Plugin 'groenewege/vim-less'
-Plugin 'nono/vim-handlebars'
-
-""" ------ Configuration Syntax plugins -------
 Plugin 'ekalinin/Dockerfile.vim'
-Plugin 'elzr/vim-json'
+Plugin 'trusktr/seti.vim'
+
+Plugin 'PProvost/vim-ps1'
+
 Plugin 'cespare/vim-toml'
+Plugin 'elzr/vim-json'
 Plugin 'empanda/vim-varnish'
+Plugin 'groenewege/vim-less'
+Plugin 'Glench/Vim-Jinja2-Syntax'
+Plugin 'nono/vim-handlebars'
 Plugin 'rodjek/vim-puppet'
 Plugin 'tpope/vim-markdown'
-Plugin 'PProvost/vim-ps1'
 
 " All of your Plugins must be added before the following line
 call vundle#end()            " required

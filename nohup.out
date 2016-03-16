@@ -1,0 +1,4 @@
+2016/03/16 17:22:13 socat[20096] N listening on AF=2 0.0.0.0:12000
+2016/03/16 17:22:16 socat[20096] N accepting connection from AF=2 192.168.136.45:65264 on AF=2 192.168.136.155:12000
+2016/03/16 17:22:16 socat[20096] N opening character device "/dev/ttyUSB0" for reading and writing
+2016/03/16 17:22:16 socat[20096] N starting data transfer loop with FDs [4,4] and [3,3]
