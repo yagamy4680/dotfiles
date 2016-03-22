@@ -52,3 +52,6 @@
 [submodule "third_parties/pyenv"]
 	path = third_parties/pyenv
 	url = https://github.com/yyuu/pyenv.git
+[submodule ".vim/bundle/nginx-contrib-vim"]
+	path = .vim/bundle/nginx-contrib-vim
+	url = https://github.com/moskytw/nginx-contrib-vim.git
