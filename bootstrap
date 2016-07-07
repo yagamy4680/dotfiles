@@ -16,7 +16,8 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	echo ${HOOK} >> ~/.bashrc
 	${DOTFILE_DIR}/scripts/mount envs/nodenv envs/vim
 	DEFAULT_NODEJS_VERSION="4.4.7"
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s ${DEFAULT_NODEJS_VERSION} && nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s ${DEFAULT_NODEJS_VERSION}
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.4.0
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 6.3.0
 else
