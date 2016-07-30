@@ -1,7 +1,11 @@
 #!/bin/bash
 
+if [ "" == "${HOME}" ]; then
+	[ "root" == "$(whoami)" ] && export HOME="/root" || export HOME="/home/$(whoami)"
+fi
+
 if [ ! -f "/tmp/nodenv" ]; then
-	cd ~/.nodenv && src/configure && make -C src
+	cd ${HOME}/.nodenv && src/configure && make -C src
 	touch /tmp/nodenv
 fi
 
