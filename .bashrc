@@ -34,7 +34,9 @@ export PATH="${DOTFILE_DIR}/bin:${PATH}"
 
 if [ "true" == "${USE_NODE_VERSION_CACHE}" ]; then
 	VERSION="node@$(nodenv version  | awk '{print $1}') "
-	export PS1="${VERSION}\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;36m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
+	export PS1="${VERSION}\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;34m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
 else
-	export PS1="\$(node_ver)\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;36m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
+	export PS1="\$(node_ver)\[\e[00;32m\]\t\[\e[0m\]\[\e[00;37m\] \u@\h \[\e[0m\]\[\e[00;33m\]\w\[\e[0m\]\[\e[00;37m\] [\[\e[0m\]\[\e[01;37m\]\$?\[\e[0m\]\[\e[00;37m\]]\n\[\e[0m\]\[\e[00;34m\]\\$\[\e[0m\]\[\e[00;37m\] \[\e[0m\]"
 fi
+
+[ "" != "${BASHRC_EXTRA}" ] && [ -f "${BASHRC_EXTRA}" ] && source ${BASHRC_EXTRA}
