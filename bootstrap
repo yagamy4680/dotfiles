@@ -20,7 +20,7 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.8.1
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 6.10.1
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 7.8.1
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 7.8.0
 	$($HOME/.nodenv/bin/nodenv which npm) --version
 	$($HOME/.nodenv/bin/nodenv which npm) install -g livescript@1.5.0
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv rehash
