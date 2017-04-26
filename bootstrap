@@ -21,10 +21,24 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	# PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.8.1
 	# PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 6.10.1
 	# PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 7.8.0
-	echo $($HOME/.nodenv/bin/nodenv which npm)
+	
+	NODE_MODULE_DIR="$(dirname $($HOME/.nodenv/bin/nodenv which npm))/node_modules"
+	UIDN="${NODE_MODULE_DIR}/npm/node_modules/uid-number/uid-number.js"
+	if [ "true" == "${FORCE_ROOT_USER_IN_QEMU}" ]; then
+		echo "backup ${UIDN}"
+		mv ${UIDN} ${UIDN}.bak
+		echo "module.exports = function uidNumber(uid, gid, cb) {cb(null, 0, 0)}" > ${UIDN}
+	fi
+	
 	$($HOME/.nodenv/bin/nodenv which npm) --version
 	$($HOME/.nodenv/bin/nodenv which npm) install -g livescript@1.5.0
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv rehash
+	
+	if [ "true" == "${FORCE_ROOT_USER_IN_QEMU}" ]; then
+		echo "restore ${UIDN}"
+		rm -f ${UIDN}
+		mv ${UIDN}.bak ${UIDN}
+	fi	
 else
 	echo "already mounted"
 fi
