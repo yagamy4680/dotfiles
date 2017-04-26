@@ -24,7 +24,7 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	
 	cd $(dirname $($HOME/.nodenv/bin/nodenv which npm))
 	cd ../lib
-	UIDN="$(pwd)/node_modules/uid-number/uid-number.js"
+	UIDN="$(pwd)/node_modules/npm/node_modules/uid-number/uid-number.js"
 	cd ${CURRENT}
 	
 	if [ "true" == "${FORCE_ROOT_USER_IN_QEMU}" ]; then
