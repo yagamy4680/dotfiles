@@ -22,8 +22,11 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	# PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 6.10.1
 	# PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 7.8.0
 	
-	NODE_MODULE_DIR="$(dirname $($HOME/.nodenv/bin/nodenv which npm))/node_modules"
-	UIDN="${NODE_MODULE_DIR}/npm/node_modules/uid-number/uid-number.js"
+	cd $(dirname $($HOME/.nodenv/bin/nodenv which npm))
+	cd ../lib/node_modules
+	UIDN="$(pwd)/node_modules/uid-number/uid-number.js"
+	cd ${CURRENT}
+	
 	if [ "true" == "${FORCE_ROOT_USER_IN_QEMU}" ]; then
 		echo "backup ${UIDN}"
 		mv ${UIDN} ${UIDN}.bak
