@@ -44,6 +44,8 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	fi
 
 	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
+	git config --global user.name "yagamy4680"
+	git config --global user.email "yagamy@gmail.com"
 else
 	echo "already mounted"
 fi
