@@ -34,14 +34,16 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	fi
 	
 	$($HOME/.nodenv/bin/nodenv which npm) --version
-	$($HOME/.nodenv/bin/nodenv which npm) install -g livescript@1.5.0
+	$($HOME/.nodenv/bin/nodenv which npm) install -g livescript@1.5.0 prettyjson diff-so-fancy
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv rehash
 	
 	if [ "true" == "${FORCE_ROOT_USER_IN_QEMU}" ]; then
 		echo "restore ${UIDN}"
 		rm -f ${UIDN}
 		mv ${UIDN}.bak ${UIDN}
-	fi	
+	fi
+
+	git config --global core.pager "diff-so-fancy | less --tabs=4 -RFX"
 else
 	echo "already mounted"
 fi
