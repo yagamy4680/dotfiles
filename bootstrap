@@ -5,6 +5,9 @@ cd $(dirname $0)
 DOTFILE_DIR=$(pwd)
 cd ${CURRENT}
 
+export LC_ALL=en_US.UTF-8
+export LANG=en_US.UTF-8
+
 if [ ! -f "$(dirname $0)/.bootstrapped" ]; then
 	git submodule init
 	git submodule update
@@ -18,9 +21,9 @@ if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	DEFAULT_NODEJS_VERSION="4.4.7"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s ${DEFAULT_NODEJS_VERSION}
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.8.1
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 6.10.1
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 7.8.0
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.8.7
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 6.12.3
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 8.9.4
 	
 	cd $(dirname $($HOME/.nodenv/bin/nodenv which npm))
 	cd ../lib
