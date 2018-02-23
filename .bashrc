@@ -31,6 +31,8 @@ function node_ver {
 
 DOTFILE_DIR="$(get_current_path)"
 export PATH="${DOTFILE_DIR}/bin:${PATH}"
+export LC_CTYPE=en_US.UTF-8
+export LC_ALL=en_US.UTF-8
 
 if [ "true" == "${USE_NODE_VERSION_CACHE}" ]; then
 	VERSION="node@$(nodenv version  | awk '{print $1}') "
