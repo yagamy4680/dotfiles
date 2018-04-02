@@ -83,4 +83,6 @@ colorscheme seti
 set cursorline
 highlight clear SignColumn
 
-
+if $COLORTERM == 'gnome-terminal'
+	set t_Co=256
+endif
