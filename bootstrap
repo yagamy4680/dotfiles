@@ -18,11 +18,11 @@ HOOK="source ${DOTFILE_DIR}/.bashrc"
 if [ "" == "$(cat ~/.bashrc | grep "^${HOOK}")" ]; then
 	echo ${HOOK} >> ~/.bashrc
 	${DOTFILE_DIR}/scripts/mount envs/nodenv envs/vim
-	DEFAULT_NODEJS_VERSION="8.11.1"
+	DEFAULT_NODEJS_VERSION="8.11.3"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s ${DEFAULT_NODEJS_VERSION}
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv global ${DEFAULT_NODEJS_VERSION} && echo "successfully use nodejs ${DEFAULT_NODEJS_VERSION} as default"
 	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 4.4.7
-	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 10.6.0
+	PATH=${PATH}:$HOME/.nodenv/bin nodenv install -s 10.7.0
 	
 	cd $(dirname $($HOME/.nodenv/bin/nodenv which npm))
 	cd ../lib
